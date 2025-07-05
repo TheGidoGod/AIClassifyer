@@ -2,7 +2,7 @@
 import numpy as np
 import streamlit as st
 from PIL import Image
-import tensorflow_hub as hub
+from tensorflow.keras.applications import MobileNetV2
 import tensorflow as tf
 import urllib.request
 
@@ -19,7 +19,7 @@ def load_labels():
 # --- Load the model
 @st.cache_resource
 def load_model():
-    model = hub.load("https://tfhub.dev/google/imagenet/mobilenet_v3_large_100_224/classification/5")
+    model = MobileNetV2(weights="imagenet")
     return model
 
 # --- Preprocess image
